@@ -1,0 +1,33 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row fxLayoutAlign="space-between center">
+    <div class="slika" fxLayout="row">
+      <button mat-button class="slika">
+        <img src="../../assets/dostavaLogo.png" alt="" class="slika logo" />
+        <span>Picerija Sun</span>
+      </button>
+    </div>
+    <div *ngIf="!deviceXs">
+      <button mat-button>Pocetna</button>
+      <button mat-button>O Nama</button>
+      <button mat-button>Kontakt</button>
+    </div>
+    <div fxLayoutAlign="center">
+      <button mat-icon-button>
+        <mat-icon *ngIf="deviceXs">more_vert</mat-icon>
+      </button>
+      <button
+        *ngIf="!deviceXs"
+        mat-button
+        class="prijava"
+        (click)="prijavaButton()"
+      >
+        Prijavite se!
+      </button>
+    </div>
+  </mat-toolbar-row>
+  <mat-toolbar-row *ngIf="deviceXs" fxLayoutAlign="space-between end">
+    <button mat-button>Pocetna</button>
+    <button mat-button>O Nama</button>
+    <button mat-button>Kontakt</button>
+  </mat-toolbar-row>
+</mat-toolbar>
