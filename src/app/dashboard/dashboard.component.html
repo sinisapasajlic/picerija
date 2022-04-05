@@ -1,0 +1,75 @@
+<app-navbar [deviceXs]="deviceXs"></app-navbar>
+<div class="content">
+  <div fxLayout="row wrap" fxLayoutAlign="space-around" fxLayoutGap="16px grid">
+    <div fxFlex="33.3%" fxFlex.xs="100%" fxFlex.sm="100%">
+      <mat-card>
+        <mat-card-header>Verifikacija</mat-card-header>
+        <mat-card-content>
+          <p>Korisnik:</p>
+          <button>da</button>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div fxFlex="33.3%" fxFlex.xs="100%" fxFlex.sm="100%">
+      <mat-card>
+        <mat-card-header>Sve porudzbine</mat-card-header>
+        <mat-card-content>
+          <p>Korisnik:</p>
+          <button>da</button>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div fxFlex="33.3%" fxFlex.xs="100%" fxFlex.sm="100%">
+      <mat-card>
+        <mat-card-header>Dodaj proizvod</mat-card-header>
+        <mat-card-content>
+          <form fxLayout="column">
+            <label class="labela" for="ime">Ime:</label>
+            <input type="text" name="ime" class="polje" />
+            <label for="velicina" class="labela">Velicina:</label>
+            <input type="text" name="velicina" class="polje" />
+            <label for="cena" class="labela">Cena:</label>
+            <input type="text" name="cena" class="polje" />
+            <label for="sastojci" class="labela">Sastojci:</label>
+            <input type="text" name="sastojci" class="polje" />
+            <button class="dugme">Dodaj proizvod</button>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>
+<!-- <div> -->
+<!-- <div
+  *ngIf="log == 1"
+  fxlayout="row wrap"
+  fxLayoutAlign="space-around"
+  fxLayoutGap="16px grid"
+>
+  <div fxFlex="33.3%" fxFlex.sm="100%" *ngFor="let broj of [1, 2, 2, 2]">
+    <mat-card>
+      <mat-card-header> Verifikacije </mat-card-header>
+      <mat-card-content>
+        <p>Korisnik</p>
+        <button>da</button>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div> -->
+<!-- <div fxFlex="33.3%" fxFlex.xs="100%" fxFlex.sm="50.3%">
+    <mat-card>
+      <mat-card-header> Verifikacije </mat-card-header>
+    </mat-card>
+  </div>
+  <div fxFlex="33.3%" fxFlex.xs="100%" fxFlex.sm="50%">
+    <mat-card>
+      <mat-card-header> Verifikacije </mat-card-header>
+    </mat-card>
+  </div> -->
+<!-- </div> -->
+<!-- <div *ngIf="log == 2">
+    <div>Nove porudzbine</div>
+    <div>Istorija mojih porudzbina</div>
+    <div>Trenutna porudzbina</div>
+  </div>
+  <div *ngIf="log == 3"></div> -->

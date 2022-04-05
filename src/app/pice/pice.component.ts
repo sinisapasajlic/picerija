@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import db from '../../db';
+import { ProizvodService } from '../proizvod.service';
+import Pica from 'src/models/Pica';
 
 @Component({
   selector: 'app-pice',
@@ -8,9 +9,12 @@ import db from '../../db';
 })
 export class PiceComponent implements OnInit {
   @Input() deviceXs: boolean;
-  pice = db.pice;
+  pice: Pica[] = [];
+  constructor(private _proizvodiService: ProizvodService) {}
 
-  constructor() {}
-
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this._proizvodiService
+      .GetProizvodi()
+      .subscribe((data) => (this.pice = data));
+  }
 }
