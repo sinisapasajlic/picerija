@@ -1,13 +1,13 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row fxLayoutAlign="space-between center">
     <div class="slika" fxLayout="row">
-      <button mat-button class="slika">
+      <button mat-button class="slika" (click)="ClickHome()">
         <img src="../../assets/dostavaLogo.png" alt="" class="slika logo" />
         <span>Picerija Sun</span>
       </button>
     </div>
     <div *ngIf="!deviceXs">
-      <button mat-button>Pocetna</button>
+      <button mat-button (click)="ClickHome()">Pocetna</button>
       <button mat-button>O Nama</button>
       <button mat-button>Kontakt</button>
     </div>

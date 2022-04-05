@@ -1,5 +1,56 @@
 <app-navbar [deviceXs]="deviceXs"></app-navbar>
-<div class="content">
+<div class="div1">
+  <div fxLayoutAlign="space-between center">
+    <button mat-button class="button" (click)="OnButtonClick(1)">
+      Verifikacija
+    </button>
+    <button mat-button class="button" (click)="OnButtonClick(2)">
+      Sve porudzbine
+    </button>
+    <button mat-button class="button" (click)="OnButtonClick(3)">
+      Dodaj proizvod
+    </button>
+  </div>
+</div>
+<div *ngIf="verifikacija">Verifikacija</div>
+<div *ngIf="svePorudzbine">Sve porudzbine</div>
+<div class="prvi-kontajner">
+  <div *ngIf="dodajProizvod" fxLayout="row wrap" fxLayoutGap="16px grid">
+    <div
+      fxFlex="16.66%"
+      fxFlex.sm="25%"
+      fxFlex.xs="100%"
+      fxLayout="column"
+      fxLayoutAlign="center"
+    >
+      <div class="kontajnerDodaj">
+        <button mat-button>Dodaj proizvod</button>
+      </div>
+    </div>
+    <div
+      fxFlex="16.66%"
+      fxFlex.sm="25%"
+      fxFlex.xs="100%"
+      *ngFor="let pica of pice"
+    >
+      <div class="kontajner">
+        <div class="slika">
+          <img mat-card-image src="../../assets/6560124.png" alt="" />
+        </div>
+
+        <h3>{{ pica.ime }}</h3>
+        <p>
+          {{ pica.velicina }}
+        </p>
+        <p>Cena: {{ pica.cena }}e</p>
+        <div class="obrisi-edituj">
+          <button mat-button>Edit</button><button mat-button>Obrisi</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <div class="content">
   <div fxLayout="row wrap" fxLayoutAlign="space-around" fxLayoutGap="16px grid">
     <div fxFlex="33.3%" fxFlex.xs="100%" fxFlex.sm="100%">
       <mat-card>
@@ -38,7 +89,7 @@
       </mat-card>
     </div>
   </div>
-</div>
+</div> -->
 <!-- <div> -->
 <!-- <div
   *ngIf="log == 1"

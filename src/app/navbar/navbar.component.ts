@@ -15,4 +15,7 @@ export class NavbarComponent implements OnInit {
   prijavaButton() {
     this.router.navigate(['/login']);
   }
+  ClickHome() {
+    this.router.navigate(['/home']);
+  }
 }
