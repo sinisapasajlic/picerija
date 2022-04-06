@@ -13,6 +13,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   log: Number = 1;
   subscribe: Subscription;
   deviceXs: boolean;
+  pica: Pica;
   pice: Pica[] = [];
   verifikacija: boolean = false;
   svePorudzbine: boolean = false;
@@ -49,6 +50,17 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.verifikacija = false;
       this.dodajProizvod = true;
       this.svePorudzbine = false;
+    }
+  }
+  ObrisiProizvod(id: number) {
+    if (
+      this._proizvodiService
+        .DeleteProizvodi(id)
+        .subscribe((data) => (this.pica = data))
+    ) {
+      this._proizvodiService
+        .GetProizvodi()
+        .subscribe((data) => (this.pice = data));
     }
   }
 }

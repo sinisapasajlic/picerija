@@ -39,12 +39,14 @@
         </div>
 
         <h3>{{ pica.ime }}</h3>
-        <p>
-          {{ pica.velicina }}
-        </p>
+        <p>{{ pica.velicina }}</p>
         <p>Cena: {{ pica.cena }}e</p>
+
         <div class="obrisi-edituj">
-          <button mat-button>Edit</button><button mat-button>Obrisi</button>
+          <button mat-button>Edit</button
+          ><button mat-button (click)="ObrisiProizvod(pica.proizvodId)">
+            Obrisi
+          </button>
         </div>
       </div>
     </div>
