@@ -1,0 +1,104 @@
+<div *ngIf="tip == 'dodajBtn'">
+  <form fxLayout="column" [formGroup]="forma">
+    <label class="labela" for="ime">Ime:</label>
+    <input
+      type="text"
+      autocomplete="off"
+      spellcheck="false"
+      formControlName="Ime"
+      name="ime"
+      class="polje"
+    />
+    <label for="velicina" class="labela">Velicina:</label>
+    <input
+      type="text"
+      spellcheck="false"
+      autocomplete="off"
+      formControlName="Velicina"
+      name="velicina"
+      class="polje"
+    />
+    <label for="cena" class="labela">Cena:</label>
+    <input
+      type="number"
+      autocomplete="off"
+      spellcheck="false"
+      name="cena"
+      formControlName="Cena"
+      class="polje"
+    />
+    <label for="sastojci" class="labela">Sastojci:</label>
+    <input
+      type="text"
+      autocomplete="off"
+      spellcheck="false"
+      name="sastojci"
+      formControlName="Sastojci"
+      class="polje"
+    />
+    <button
+      class="dugme"
+      id="dodaj-button"
+      (click)="DodajProizvod()"
+      [disabled]="dodavanje"
+    >
+      Dodaj proizvod
+    </button>
+  </form>
+</div>
+<div
+  *ngIf="tip == 'obrisiBtn'"
+  class="obrisi-kontajner"
+  fxLayout="column"
+  fxLayoutAlign="space-around"
+>
+  <h3>Uspjesno ste obrisali proizvod</h3>
+  <p>Id: {{ pica.proizvodId }}</p>
+  <p>Ime: {{ pica.ime }}</p>
+  <p>Velicina: {{ pica.velicina }}</p>
+  <p>Cena: {{ pica.cena }}e</p>
+  <p>Sastojci: {{ pica.sastojci }}</p>
+</div>
+<div *ngIf="tip == 'editujBtn'">
+  <form fxLayout="column" [formGroup]="forma1">
+    <label class="labela" for="ime">Ime:</label>
+    <input
+      type="text"
+      spellcheck="false"
+      formControlName="Ime"
+      value="{{ pica.ime }}"
+      name="ime"
+      class="polje"
+    />
+    <label for="velicina" class="labela">Velicina:</label>
+    <input
+      type="text"
+      spellcheck="false"
+      value="{{ pica.velicina }}"
+      name="velicina"
+      formControlName="Velicina"
+      class="polje"
+    />
+    <label for="cena" class="labela">Cena:</label>
+    <input
+      type="number"
+      spellcheck="false"
+      value="{{ pica.cena }}"
+      name="cena"
+      formControlName="Cena"
+      class="polje"
+    />
+    <label for="sastojci" class="labela">Sastojci:</label>
+    <input
+      type="text"
+      spellcheck="false"
+      value="{{ pica.sastojci }}"
+      name="sastojci"
+      formControlName="Sastojci"
+      class="polje"
+    />
+    <button class="dugme" (click)="IzmjeniProizvod()" [disabled]="dodavanje">
+      Izmjeni proizvod
+    </button>
+  </form>
+</div>

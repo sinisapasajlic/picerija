@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import Pica from 'src/models/Pica';
 
 @Component({
   selector: 'app-root',
@@ -7,7 +8,6 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit {
   title = 'picerija';
-
   constructor() {}
 
   ngOnInit(): void {}

@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using WebApi.Enums;
 
 namespace WebApi.models
 {
@@ -12,7 +11,7 @@ namespace WebApi.models
   {
     public int ProizvodId { get; set; }
     public string Ime { get; set; }
-    public Velicine Velicina { get; set; }
+    public string Velicina { get; set; }
     public double Cena { get; set; }
     public string Sastojci { get; set; }
   }

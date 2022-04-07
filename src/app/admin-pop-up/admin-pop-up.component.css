@@ -1,0 +1,35 @@
+p {
+  text-align: center;
+  height: 20px;
+  font-size: large;
+  border: 1px transparent rgb(68, 68, 193);
+  box-shadow: 0px 1px rgb(68, 68, 193);
+}
+button {
+  font-size: large;
+  height: 40px;
+  margin-top: 20px;
+  background-color: rgb(68, 68, 193);
+  color: white;
+  border-radius: 10px;
+}
+label {
+  font-size: medium;
+}
+input {
+  font-size: large;
+  height: 40px;
+  border: 2px solid rgb(68, 68, 193);
+  border-radius: 10px;
+  text-align: center;
+}
+input:focus {
+  font-size: large;
+  text-align: center;
+  background-color: rgb(68, 68, 193);
+  color: white;
+  border: 1px solid rgb(68, 68, 193);
+}
+.obrisi-kontajner {
+  height: 100%;
+}

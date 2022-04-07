@@ -1,7 +1,7 @@
 export default class Pica {
   'proizvodId': number;
   'ime': string;
-  'cena': DoubleRange;
-  'velicina': number;
+  'cena': number;
+  'velicina': string;
   'sastojci': string;
 }

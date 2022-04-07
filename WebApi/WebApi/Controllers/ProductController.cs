@@ -60,6 +60,7 @@ namespace WebApi.Controllers
     [Route("AddProizvod")]
     public async Task<ActionResult<Proizvod>> AddProizvod([FromBody] Pica pica)
     {
+      Console.WriteLine(pica);
       var proizvod = new Proizvod()
       {
         Ime = pica.Ime,

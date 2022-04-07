@@ -24,7 +24,7 @@
       fxLayoutAlign="center"
     >
       <div class="kontajnerDodaj">
-        <button mat-button>Dodaj proizvod</button>
+        <button mat-button (click)="DodajProizvod()">Dodaj proizvod</button>
       </div>
     </div>
     <div
@@ -43,10 +43,8 @@
         <p>Cena: {{ pica.cena }}e</p>
 
         <div class="obrisi-edituj">
-          <button mat-button>Edit</button
-          ><button mat-button (click)="ObrisiProizvod(pica.proizvodId)">
-            Obrisi
-          </button>
+          <button mat-button (click)="EditujProizvod(pica)">Edit</button
+          ><button mat-button (click)="ObrisiProizvod(pica)">Obrisi</button>
         </div>
       </div>
     </div>

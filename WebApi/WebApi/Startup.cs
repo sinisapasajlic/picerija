@@ -27,8 +27,8 @@ namespace WebApi
     // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services)
     {
-      services.AddControllers();
-      services.AddCors(options => options.AddDefaultPolicy(builder => { builder.WithOrigins("http://localhost:4200"); builder.AllowAnyHeader(); builder.AllowAnyMethod(); }));
+            services.AddControllers();
+            services.AddCors(options => options.AddDefaultPolicy(builder => { builder.WithOrigins("http://localhost:4200"); builder.AllowAnyHeader(); builder.AllowAnyMethod(); }));
             services.AddDbContext<ProizvodContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ProizvodContext")));
         }
 

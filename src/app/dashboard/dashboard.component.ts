@@ -3,6 +3,8 @@ import { MediaChange, MediaObserver } from '@angular/flex-layout';
 import Pica from 'src/models/Pica';
 import { Subscription } from 'rxjs';
 import { ProizvodService } from '../proizvod.service';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { AdminPopUpComponent } from '../admin-pop-up/admin-pop-up.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -21,7 +23,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   constructor(
     private mediaObs: MediaObserver,
-    private _proizvodiService: ProizvodService
+    private _proizvodiService: ProizvodService,
+    private matDialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -29,9 +32,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.deviceXs = result.mqAlias === 'xs' ? true : false;
       console.log(result.mqAlias);
     });
-    this._proizvodiService
-      .GetProizvodi()
-      .subscribe((data) => (this.pice = data));
+    this.GetProizvodi();
   }
   ngOnDestroy(): void {
     this.subscribe.unsubscribe();
@@ -52,15 +53,38 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.svePorudzbine = false;
     }
   }
-  ObrisiProizvod(id: number) {
-    if (
-      this._proizvodiService
-        .DeleteProizvodi(id)
-        .subscribe((data) => (this.pica = data))
-    ) {
-      this._proizvodiService
-        .GetProizvodi()
-        .subscribe((data) => (this.pice = data));
-    }
+  GetProizvodi() {
+    this._proizvodiService
+      .GetProizvodi()
+      .subscribe((data) => (this.pice = data));
+    console.log(this.pice);
+  }
+  ObrisiProizvod(pica: Pica) {
+    console.log(this.pice);
+    this._proizvodiService
+      .DeleteProizvodi(pica.proizvodId)
+      .subscribe((data) => {
+        this.pica = data;
+        this.GetProizvodi();
+        this.matDialog.open(AdminPopUpComponent, {
+          width: '40%',
+          height: '60%',
+          data: { ime: 'obrisiBtn', pica: this.pica },
+        });
+      });
+  }
+  DodajProizvod() {
+    this.matDialog.open(AdminPopUpComponent, {
+      width: '40%',
+      height: '60%',
+      data: { ime: 'dodajBtn' },
+    });
+  }
+  EditujProizvod(pica: Pica) {
+    this.matDialog.open(AdminPopUpComponent, {
+      width: '40%',
+      height: '60%',
+      data: { ime: 'editujBtn', pica: pica },
+    });
   }
 }

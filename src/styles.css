@@ -8,3 +8,7 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+.mat-dialog-container {
+  border-radius: 20px !important;
+  box-shadow: 3px 3px rgb(68, 68, 193);
+}

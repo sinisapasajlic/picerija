@@ -18,4 +18,12 @@ export class ProizvodService {
     console.log(url);
     return this.http.delete<Pica>(url);
   }
+  AddProizvod(pica: Pica): Observable<Pica> {
+    let url = BASE_PROIZVOD_URL + 'addproizvod';
+    return this.http.post<Pica>(url, pica);
+  }
+  UpdateProizvod(pica: Pica): Observable<Pica> {
+    let url = BASE_PROIZVOD_URL + 'updateproizvod';
+    return this.http.patch<Pica>(url, pica);
+  }
 }

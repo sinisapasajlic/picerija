@@ -9,7 +9,7 @@ using WebApi.Data;
 namespace WebApi.Migrations
 {
     [DbContext(typeof(ProizvodContext))]
-    [Migration("20220405113205_Initial")]
+    [Migration("20220406210633_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -36,12 +36,12 @@ namespace WebApi.Migrations
                     b.Property<string>("Sastojci")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Velicina")
-                        .HasColumnType("int");
+                    b.Property<string>("Velicina")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ProizvodId");
 
-                    b.ToTable("Proizvod");
+                    b.ToTable("Proizvodi");
                 });
 #pragma warning restore 612, 618
         }
