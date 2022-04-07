@@ -17,6 +17,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   deviceXs: boolean;
   pica: Pica;
   pice: Pica[] = [];
+  sirina: string;
   verifikacija: boolean = false;
   svePorudzbine: boolean = false;
   dodajProizvod: boolean = true;
@@ -30,7 +31,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subscribe = this.mediaObs.media$.subscribe((result: MediaChange) => {
       this.deviceXs = result.mqAlias === 'xs' ? true : false;
-      console.log(result.mqAlias);
+      if (this.deviceXs) {
+        this.sirina = '80%';
+      } else {
+        this.sirina = '40%';
+      }
     });
     this.GetProizvodi();
   }
@@ -66,25 +71,46 @@ export class DashboardComponent implements OnInit, OnDestroy {
       .subscribe((data) => {
         this.pica = data;
         this.GetProizvodi();
-        this.matDialog.open(AdminPopUpComponent, {
-          width: '40%',
-          height: '60%',
+        let dialogRef = this.matDialog.open(AdminPopUpComponent, {
+          width: this.sirina,
+          height: '66%',
+          position: { top: '0', right: '0' },
           data: { ime: 'obrisiBtn', pica: this.pica },
+        });
+        dialogRef.afterOpened().subscribe((_) => {
+          setTimeout(() => {
+            dialogRef.close();
+          }, 2000);
         });
       });
   }
   DodajProizvod() {
-    this.matDialog.open(AdminPopUpComponent, {
-      width: '40%',
-      height: '60%',
+    let dialogRef = this.matDialog.open(AdminPopUpComponent, {
+      width: this.sirina,
+      height: '66%',
+      disableClose: true,
       data: { ime: 'dodajBtn' },
     });
+    dialogRef
+      .afterClosed()
+      .subscribe(() =>
+        this._proizvodiService
+          .GetProizvodi()
+          .subscribe((data) => (this.pice = data))
+      );
   }
   EditujProizvod(pica: Pica) {
-    this.matDialog.open(AdminPopUpComponent, {
-      width: '40%',
-      height: '60%',
+    let dialogRef = this.matDialog.open(AdminPopUpComponent, {
+      width: this.sirina,
+      height: '66%',
       data: { ime: 'editujBtn', pica: pica },
     });
+    dialogRef
+      .afterClosed()
+      .subscribe(() =>
+        this._proizvodiService
+          .GetProizvodi()
+          .subscribe((data) => (this.pice = data))
+      );
   }
 }

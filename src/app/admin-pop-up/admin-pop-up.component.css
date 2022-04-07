@@ -33,3 +33,6 @@ input:focus {
 .obrisi-kontajner {
   height: 100%;
 }
+.close-btn {
+  align-self: flex-end;
+}

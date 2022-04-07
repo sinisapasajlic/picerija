@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.SqlServer;
@@ -12,6 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebApi.Data;
+using WebApi.models;
 
 namespace WebApi
 {
@@ -30,6 +32,15 @@ namespace WebApi
             services.AddControllers();
             services.AddCors(options => options.AddDefaultPolicy(builder => { builder.WithOrigins("http://localhost:4200"); builder.AllowAnyHeader(); builder.AllowAnyMethod(); }));
             services.AddDbContext<ProizvodContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ProizvodContext")));
+            services.AddDbContext<AuthenticationContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ProizvodContext")));
+      services.AddDefaultIdentity<ApplicationUser>().AddEntityFrameworkStores<AuthenticationContext>();
+      services.Configure<IdentityOptions>(options =>
+      {
+        options.Password.RequireDigit = false;
+        options.Password.RequireNonAlphanumeric = false;
+        options.Password.RequireLowercase = false;
+        options.Password.RequireUppercase = false;
+      });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,6 +54,8 @@ namespace WebApi
             app.UseRouting();
 
             app.UseCors();
+
+      app.UseAuthentication();
 
             app.UseAuthorization();
 

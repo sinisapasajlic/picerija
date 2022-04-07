@@ -1,4 +1,5 @@
-<div *ngIf="tip == 'dodajBtn'">
+<div *ngIf="tip == 'dodajBtn'" fxLayout="column">
+  <mat-icon class="close-btn" mat-dialog-close>highlight_off</mat-icon>
   <form fxLayout="column" [formGroup]="forma">
     <label class="labela" for="ime">Ime:</label>
     <input
@@ -52,6 +53,8 @@
   fxLayout="column"
   fxLayoutAlign="space-around"
 >
+  <mat-icon class="close-btn" mat-dialog-close>highlight_off</mat-icon>
+
   <h3>Uspjesno ste obrisali proizvod</h3>
   <p>Id: {{ pica.proizvodId }}</p>
   <p>Ime: {{ pica.ime }}</p>
@@ -59,7 +62,9 @@
   <p>Cena: {{ pica.cena }}e</p>
   <p>Sastojci: {{ pica.sastojci }}</p>
 </div>
-<div *ngIf="tip == 'editujBtn'">
+<div *ngIf="tip == 'editujBtn'" fxLayout="column">
+  <mat-icon class="close-btn" mat-dialog-close>highlight_off</mat-icon>
+
   <form fxLayout="column" [formGroup]="forma1">
     <label class="labela" for="ime">Ime:</label>
     <input
