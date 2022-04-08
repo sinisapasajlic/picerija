@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import Pica from 'src/models/Pica';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { ProizvodService } from '../proizvod.service';
+import { ProizvodService } from '../services/proizvod.service';
 
 @Component({
   selector: 'app-admin-pop-up',
@@ -12,6 +12,7 @@ import { ProizvodService } from '../proizvod.service';
 export class AdminPopUpComponent implements OnInit {
   tip: string;
   pica: Pica;
+  id: number;
   forma: FormGroup;
   forma1: FormGroup;
   dodavanje: boolean = false;
@@ -20,7 +21,7 @@ export class AdminPopUpComponent implements OnInit {
     private fb: FormBuilder,
     private _proizvodiService: ProizvodService
   ) {
-    this.tip = data.ime;
+    this.tip = data.naziv;
     this.pica = data.pica;
   }
 
@@ -33,7 +34,6 @@ export class AdminPopUpComponent implements OnInit {
     });
     this.forma.valueChanges.subscribe();
     this.forma1 = this.fb.group({
-      proizvodId: this.pica.proizvodId,
       Ime: this.pica.ime,
       Velicina: this.pica.velicina,
       Sastojci: this.pica.sastojci,
@@ -51,9 +51,10 @@ export class AdminPopUpComponent implements OnInit {
   }
   IzmjeniProizvod() {
     this.dodavanje = true;
+    this.id = this.pica.proizvodId;
     this.pica = this.forma1.value;
-    this._proizvodiService.UpdateProizvod(this.pica).subscribe((data) => {
-      this.pica = data;
+    this.pica.proizvodId = this.id;
+    this._proizvodiService.UpdateProizvod(this.pica).subscribe(() => {
       this.dodavanje = false;
     });
   }

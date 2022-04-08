@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MediaChange, MediaObserver } from '@angular/flex-layout';
 import Pica from 'src/models/Pica';
 import { Subscription } from 'rxjs';
-import { ProizvodService } from '../proizvod.service';
+import { ProizvodService } from '../services/proizvod.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { AdminPopUpComponent } from '../admin-pop-up/admin-pop-up.component';
 
@@ -75,7 +75,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
           width: this.sirina,
           height: '66%',
           position: { top: '0', right: '0' },
-          data: { ime: 'obrisiBtn', pica: this.pica },
+          data: { naziv: 'obrisiBtn', pica: this.pica },
         });
         dialogRef.afterOpened().subscribe((_) => {
           setTimeout(() => {
@@ -89,7 +89,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       width: this.sirina,
       height: '66%',
       disableClose: true,
-      data: { ime: 'dodajBtn' },
+      data: { naziv: 'dodajBtn' },
     });
     dialogRef
       .afterClosed()
@@ -103,7 +103,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     let dialogRef = this.matDialog.open(AdminPopUpComponent, {
       width: this.sirina,
       height: '66%',
-      data: { ime: 'editujBtn', pica: pica },
+      data: { naziv: 'editujBtn', pica: pica },
     });
     dialogRef
       .afterClosed()

@@ -1,8 +1,12 @@
 .kontajner {
+  width: 60%;
   margin-top: 40px;
   border: 1px solid black;
   border-radius: 10px;
   padding: 16px;
+}
+.kontajner-mali {
+  width: 100%;
 }
 .polje {
   width: 100%;
@@ -13,8 +17,15 @@
 }
 .kontajner > div {
   margin-top: 20px;
-  align-self: center;
+  align-self: flex-start;
 }
-.kontajner > h3 {
-  align-self: center;
+h3 {
+  font-size: 20px;
+}
+.btn {
+  font-size: 20px;
+}
+.labela-upozorenje {
+  color: red;
+  margin-top: 0px;
 }

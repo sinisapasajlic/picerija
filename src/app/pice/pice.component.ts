@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ProizvodService } from '../proizvod.service';
+import { ProizvodService } from '../services/proizvod.service';
 import Pica from 'src/models/Pica';
 
 @Component({

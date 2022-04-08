@@ -62,10 +62,20 @@
   height: 100%;
   display: flex;
   justify-items: center;
+  align-items: center;
   padding: 10px;
   border-radius: 10px;
 }
 .kontajnerDodaj > button {
   width: 100%;
   border-radius: 10px;
+}
+.mat-icon {
+  font-size: 70px;
+  height: 100px;
+  width: 100px;
+  color: rgb(68, 68, 193);
+}
+.h2 {
+  color: rgb(68, 68, 193);
 }

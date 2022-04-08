@@ -66,25 +66,23 @@
   <mat-icon class="close-btn" mat-dialog-close>highlight_off</mat-icon>
 
   <form fxLayout="column" [formGroup]="forma1">
-    <label class="labela" for="ime">Ime:</label>
+    <label class="labela">Ime:</label>
     <input
       type="text"
       spellcheck="false"
-      formControlName="Ime"
       value="{{ pica.ime }}"
-      name="ime"
+      formControlName="Ime"
       class="polje"
     />
-    <label for="velicina" class="labela">Velicina:</label>
+    <label class="labela">Velicina:</label>
     <input
       type="text"
       spellcheck="false"
       value="{{ pica.velicina }}"
-      name="velicina"
       formControlName="Velicina"
       class="polje"
     />
-    <label for="cena" class="labela">Cena:</label>
+    <label class="labela">Cena:</label>
     <input
       type="number"
       spellcheck="false"

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import Pica from '../models/Pica';
+import Pica from '../../models/Pica';
 import { BASE_PROIZVOD_URL } from 'src/environments/environment';
 
 @Injectable({

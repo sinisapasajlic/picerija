@@ -24,7 +24,15 @@
       fxLayoutAlign="center"
     >
       <div class="kontajnerDodaj">
-        <button mat-button (click)="DodajProizvod()">Dodaj proizvod</button>
+        <button
+          mat-button
+          (click)="DodajProizvod()"
+          fxLayout="column"
+          fxLayoutAlign="space-around"
+        >
+          <h2 class="h2">Dodaj proizvod</h2>
+          <mat-icon>add</mat-icon>
+        </button>
       </div>
     </div>
     <div
