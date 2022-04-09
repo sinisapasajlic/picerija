@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { ProizvodService } from '../services/proizvod.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { AdminPopUpComponent } from '../admin-pop-up/admin-pop-up.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-dashboard',
@@ -25,7 +26,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
   constructor(
     private mediaObs: MediaObserver,
     private _proizvodiService: ProizvodService,
-    private matDialog: MatDialog
+    private matDialog: MatDialog,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -70,18 +72,23 @@ export class DashboardComponent implements OnInit, OnDestroy {
       .DeleteProizvodi(pica.proizvodId)
       .subscribe((data) => {
         this.pica = data;
+        // this.toastr.info('ID:' + this.pica.proizvodId, 'Ime:' + this.pica.ime);
+        this.toastr.success(
+          'Id:' + this.pica.proizvodId + '  Ime:' + this.pica.ime,
+          'Obrisali ste proizvod:'
+        );
         this.GetProizvodi();
-        let dialogRef = this.matDialog.open(AdminPopUpComponent, {
-          width: this.sirina,
-          height: '66%',
-          position: { top: '0', right: '0' },
-          data: { naziv: 'obrisiBtn', pica: this.pica },
-        });
-        dialogRef.afterOpened().subscribe((_) => {
-          setTimeout(() => {
-            dialogRef.close();
-          }, 2000);
-        });
+        // let dialogRef = this.matDialog.open(AdminPopUpComponent, {
+        //   width: this.sirina,
+        //   height: '66%',
+        //   position: { top: '0', right: 'width/2' },
+        //   data: { naziv: 'obrisiBtn', pica: this.pica },
+        // });
+        // dialogRef.afterOpened().subscribe((_) => {
+        //   setTimeout(() => {
+        //     dialogRef.close();
+        //   }, 2000);
+        // });
       });
   }
   DodajProizvod() {

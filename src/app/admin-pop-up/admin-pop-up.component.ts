@@ -3,6 +3,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import Pica from 'src/models/Pica';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ProizvodService } from '../services/proizvod.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-admin-pop-up',
@@ -19,7 +20,8 @@ export class AdminPopUpComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private fb: FormBuilder,
-    private _proizvodiService: ProizvodService
+    private _proizvodiService: ProizvodService,
+    private toastr: ToastrService
   ) {
     this.tip = data.naziv;
     this.pica = data.pica;
@@ -47,6 +49,7 @@ export class AdminPopUpComponent implements OnInit {
     this._proizvodiService.AddProizvod(this.pica).subscribe((data) => {
       this.pica = data;
       this.dodavanje = false;
+      this.toastr.success('Dodali ste novi proizvod', 'Dodavanje uspjesno!');
     });
   }
   IzmjeniProizvod() {
@@ -56,6 +59,10 @@ export class AdminPopUpComponent implements OnInit {
     this.pica.proizvodId = this.id;
     this._proizvodiService.UpdateProizvod(this.pica).subscribe(() => {
       this.dodavanje = false;
+      this.toastr.success(
+        'Uspjesno ste izmjenili proizvod',
+        'Uspjsna izmjena!'
+      );
     });
   }
 }

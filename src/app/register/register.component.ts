@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { RegistracijaService } from '../services/registracija.service';
 import Korisnik from 'src/models/Korisnik';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -17,7 +18,8 @@ export class RegisterComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private _registracijaService: RegistracijaService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -63,9 +65,28 @@ export class RegisterComponent implements OnInit {
     korisnik.datumRodjenja = this.forma.value.DatumRodjenja;
     korisnik.TipKorisnika = parseInt(this.forma.value.TipKorisnika);
 
-    this._registracijaService
-      .RegistrujSe(korisnik)
-      .subscribe(() => this.router.navigate(['/login']));
+    this._registracijaService.RegistrujSe(korisnik).subscribe((res) => {
+      if (res.succeeded) {
+        this.router.navigate(['/login']);
+        this.toastr.success(
+          'Novi korisnik je kreiran',
+          'Registracija uspjesna!'
+        );
+      } else {
+        res.errors.forEach((element: any) => {
+          switch (element.code) {
+            case 'DuplicateUserName':
+              this.toastr.error(
+                'Korisnicnko ime vec postoji',
+                'Registracija neuspjesna'
+              );
+              break;
+            default:
+              break;
+          }
+        });
+      }
+    });
   }
   Podudaranje(str1: string, str2: string) {
     return (formGroup: FormGroup) => {
@@ -90,10 +111,5 @@ export class RegisterComponent implements OnInit {
   datumDisable() {
     var datum: any = new Date();
     this.maxDatum = this.convert(datum);
-    // var dan: any = datum.getDate();
-    // var mjesec: any = datum.getMonth();
-    // var godina: any = datum.getFullYear();
-    // var str: string = godina + '-' + mjesec + '-' + dan;
-    // this.convert(str);
   }
 }

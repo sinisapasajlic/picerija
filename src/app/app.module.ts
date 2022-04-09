@@ -15,6 +15,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
+import { ToastrModule } from 'ngx-toastr';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -54,6 +55,7 @@ import { AdminPopUpComponent } from './admin-pop-up/admin-pop-up.component';
     MatInputModule,
     MatButtonModule,
     MatRadioModule,
+    ToastrModule.forRoot({ progressBar: true }),
   ],
   providers: [],
   bootstrap: [AppComponent],
