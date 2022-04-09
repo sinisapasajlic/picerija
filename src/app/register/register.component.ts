@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { RegistracijaService } from '../services/registracija.service';
+import Korisnik from 'src/models/Korisnik';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -9,8 +12,13 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class RegisterComponent implements OnInit {
   forma: FormGroup;
   submitted: boolean = false;
+  maxDatum: string;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private _registracijaService: RegistracijaService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.forma = this.fb.group(
@@ -19,10 +27,10 @@ export class RegisterComponent implements OnInit {
         Prezime: ['', Validators.required],
         Username: ['', Validators.required],
         Email: ['', [Validators.required, Validators.email]],
-        DatumRodjenja: ['', Validators.required],
+        DatumRodjenja: ['', [Validators.required]],
         Adresa: ['', Validators.required],
 
-        Password: ['', [Validators.required, Validators.minLength(4)]],
+        Password: ['', [Validators.required, Validators.minLength(6)]],
         ConfirmPassword: ['', [Validators.required]],
 
         TipKorisnika: ['', Validators.required],
@@ -31,7 +39,8 @@ export class RegisterComponent implements OnInit {
         validators: this.Podudaranje('Password', 'ConfirmPassword'),
       }
     );
-    this.forma.valueChanges.subscribe();
+    this.datumDisable();
+    this.forma.valueChanges.subscribe(console.log);
   }
 
   get f() {
@@ -43,13 +52,20 @@ export class RegisterComponent implements OnInit {
     if (this.forma.invalid) {
       return;
     }
-    console.log(this.convert(this.forma.value.DatumRodjenja));
-  }
-  convert(str: string) {
-    var date = new Date(str),
-      mnth = ('0' + (date.getMonth() + 1)).slice(-2),
-      day = ('0' + date.getDate()).slice(-2);
-    return [date.getFullYear(), mnth, day].join('-');
+    var korisnik = new Korisnik();
+    korisnik.Ime = this.forma.value.Ime;
+    korisnik.Prezime = this.forma.value.Prezime;
+    korisnik.UserName = this.forma.value.Username;
+    korisnik.Email = this.forma.value.Email;
+    korisnik.Slika = '';
+    korisnik.Adresa = this.forma.value.Adresa;
+    korisnik.Password = this.forma.value.Password;
+    korisnik.datumRodjenja = this.forma.value.DatumRodjenja;
+    korisnik.TipKorisnika = parseInt(this.forma.value.TipKorisnika);
+
+    this._registracijaService
+      .RegistrujSe(korisnik)
+      .subscribe(() => this.router.navigate(['/login']));
   }
   Podudaranje(str1: string, str2: string) {
     return (formGroup: FormGroup) => {
@@ -64,5 +80,20 @@ export class RegisterComponent implements OnInit {
         control2.setErrors(null);
       }
     };
+  }
+  convert(str: string) {
+    var date = new Date(str),
+      mnth = ('0' + (date.getMonth() + 1)).slice(-2),
+      day = ('0' + date.getDate()).slice(-2);
+    return [date.getFullYear(), mnth, day].join('-');
+  }
+  datumDisable() {
+    var datum: any = new Date();
+    this.maxDatum = this.convert(datum);
+    // var dan: any = datum.getDate();
+    // var mjesec: any = datum.getMonth();
+    // var godina: any = datum.getFullYear();
+    // var str: string = godina + '-' + mjesec + '-' + dan;
+    // this.convert(str);
   }
 }

@@ -7,6 +7,8 @@ export const environment = {
 };
 
 export const BASE_PROIZVOD_URL = 'http://localhost:5000/api/proizvod/';
+export const BASE_USER_URL = 'http://localhost:5000/api/user/';
+
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.

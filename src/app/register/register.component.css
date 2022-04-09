@@ -16,16 +16,20 @@
   margin-bottom: 10px;
 }
 .kontajner > div {
-  margin-top: 20px;
+  /* margin-top: 20px; */
   align-self: flex-start;
 }
 h3 {
   font-size: 20px;
 }
 .btn {
+  margin-top: 20px;
   font-size: 20px;
 }
 .labela-upozorenje {
   color: red;
   margin-top: 0px;
+}
+.mat-radio-group {
+  width: 100%;
 }

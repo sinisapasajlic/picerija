@@ -67,6 +67,7 @@
             type="password"
             name="Password"
             formControlName="Password"
+            autocomplete="off"
           />
         </mat-form-field>
 
@@ -77,6 +78,7 @@
             type="password"
             name="ConfirmPassword"
             formControlName="ConfirmPassword"
+            autocomplete="off"
           />
         </mat-form-field>
         <!-- <mat-label
@@ -94,6 +96,7 @@
             [matDatepicker]="izborDatuma"
             formControlName="DatumRodjenja"
             name="datumRodjenja"
+            max="{{ this.maxDatum }}"
           />
           <mat-datepicker-toggle
             [for]="izborDatuma"
@@ -106,7 +109,7 @@
           <input matInput type="text" name="adresa" formControlName="Adresa" />
         </mat-form-field>
       </div>
-      <mat-form-field>
+      <!-- <mat-form-field>
         <mat-label>Tip korisnika:</mat-label>
         <input
           matInput
@@ -114,8 +117,25 @@
           name="tipKorisnika"
           formControlName="TipKorisnika"
         />
-      </mat-form-field>
-      <button mat-button class="btn" type="submit">Registrujte se</button>
+      </mat-form-field> -->
+
+      <mat-radio-group
+        fxLayoutAlign="space-around"
+        formControlName="TipKorisnika"
+      >
+        <mat-radio-button value="{{ 1 }}">Admin</mat-radio-button>
+        <mat-radio-button value="{{ 2 }}">Dostavljac</mat-radio-button>
+        <mat-radio-button value="{{ 3 }}">Korisnik</mat-radio-button>
+      </mat-radio-group>
+
+      <button
+        mat-button
+        class="btn"
+        type="submit"
+        [disabled]="!this.forma.valid"
+      >
+        Registrujte se
+      </button>
     </form>
 
     <div>
