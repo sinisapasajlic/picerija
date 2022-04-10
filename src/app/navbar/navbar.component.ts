@@ -8,12 +8,20 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
   @Input() deviceXs: boolean;
+
+  _localStorage: any;
   constructor(private router: Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this._localStorage = localStorage;
+  }
 
   prijavaButton() {
     this.router.navigate(['/login']);
+  }
+  odjavaButton() {
+    localStorage.removeItem('token');
+    this.router.navigateByUrl('/home');
   }
   ClickHome() {
     this.router.navigate(['/home']);

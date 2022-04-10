@@ -3,7 +3,7 @@
     <div class="slika" fxLayout="row">
       <button mat-button class="slika" (click)="ClickHome()">
         <img src="../../assets/dostavaLogo.png" alt="" class="slika logo" />
-        <span>Picerija Sun</span>
+        <span>Picerija</span>
       </button>
     </div>
     <div *ngIf="!deviceXs">
@@ -16,12 +16,20 @@
         <mat-icon *ngIf="deviceXs">more_vert</mat-icon>
       </button>
       <button
-        *ngIf="!deviceXs"
+        *ngIf="!deviceXs && !_localStorage.token"
         mat-button
         class="prijava"
         (click)="prijavaButton()"
       >
         Prijavite se!
+      </button>
+      <button
+        *ngIf="!deviceXs && _localStorage.token"
+        mat-button
+        class="prijava"
+        (click)="odjavaButton()"
+      >
+        Odjavite se!
       </button>
     </div>
   </mat-toolbar-row>

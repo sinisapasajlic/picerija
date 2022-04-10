@@ -60,7 +60,7 @@ namespace WebApi.Controllers
       {
         if (await _userManager.CheckPasswordAsync(user, model.Password))
         {
-          var tokenDescriptor = new Microsoft.IdentityModel.Tokens.SecurityTokenDescriptor { Subject = new ClaimsIdentity(new Claim[] { new Claim("UserId", user.Id.ToString()) }), Expires = DateTime.UtcNow.AddMinutes(5), SigningCredentials = new Microsoft.IdentityModel.Tokens.SigningCredentials(new Microsoft.IdentityModel.Tokens.SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(_appSettings.JWT_Secret)), Microsoft.IdentityModel.Tokens.SecurityAlgorithms.HmacSha256Signature) };
+          var tokenDescriptor = new Microsoft.IdentityModel.Tokens.SecurityTokenDescriptor { Subject = new ClaimsIdentity(new Claim[] { new Claim("UserId", user.Id.ToString()) }), Expires = DateTime.UtcNow.AddDays(1), SigningCredentials = new Microsoft.IdentityModel.Tokens.SigningCredentials(new Microsoft.IdentityModel.Tokens.SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(_appSettings.JWT_Secret)), Microsoft.IdentityModel.Tokens.SecurityAlgorithms.HmacSha256Signature) };
           var tokenHandler = new System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler();
           var securityToken = tokenHandler.CreateToken(tokenDescriptor);
           var token = tokenHandler.WriteToken(securityToken);

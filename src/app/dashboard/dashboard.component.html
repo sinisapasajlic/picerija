@@ -1,5 +1,5 @@
 <app-navbar [deviceXs]="deviceXs"></app-navbar>
-<div class="div1">
+<div class="div1" *ngIf="user && user.tipKorisnika == 1">
   <div fxLayoutAlign="space-between center">
     <button mat-button class="button" (click)="OnButtonClick(1)">
       Verifikacija

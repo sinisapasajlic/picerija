@@ -6,8 +6,8 @@ export const environment = {
   production: false,
 };
 
-export const BASE_PROIZVOD_URL = 'http://localhost:5000/api/proizvod/';
-export const BASE_USER_URL = 'http://localhost:5000/api/user/';
+export const BASE_PROIZVOD_URL = 'http://localhost:5000/api/';
+export const BASE_USER_URL = 'http://localhost:5000/api/';
 
 /*
  * For easier debugging in development mode, you can import the following file

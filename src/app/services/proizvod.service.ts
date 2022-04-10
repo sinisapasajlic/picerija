@@ -11,19 +11,20 @@ export class ProizvodService {
   constructor(private http: HttpClient) {}
 
   GetProizvodi(): Observable<Pica[]> {
-    return this.http.get<Pica[]>('http://localhost:5000/api/proizvod');
+    let url = BASE_PROIZVOD_URL + 'proizvod';
+    return this.http.get<Pica[]>(url);
   }
   DeleteProizvodi(id: number): Observable<Pica> {
-    let url = BASE_PROIZVOD_URL + 'deleteproizvod' + `/${id}`;
+    let url = BASE_PROIZVOD_URL + 'proizvod/deleteproizvod' + `/${id}`;
     console.log(url);
     return this.http.delete<Pica>(url);
   }
   AddProizvod(pica: Pica): Observable<Pica> {
-    let url = BASE_PROIZVOD_URL + 'addproizvod';
+    let url = BASE_PROIZVOD_URL + 'proizvod/addproizvod';
     return this.http.post<Pica>(url, pica);
   }
   UpdateProizvod(pica: Pica): Observable<Pica> {
-    let url = BASE_PROIZVOD_URL + 'updateproizvod';
+    let url = BASE_PROIZVOD_URL + 'proizvod/updateproizvod';
     return this.http.patch<Pica>(url, pica);
   }
 }

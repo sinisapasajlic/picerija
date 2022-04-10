@@ -6,6 +6,7 @@ import { ProizvodService } from '../services/proizvod.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { AdminPopUpComponent } from '../admin-pop-up/admin-pop-up.component';
 import { ToastrService } from 'ngx-toastr';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -19,18 +20,30 @@ export class DashboardComponent implements OnInit, OnDestroy {
   pica: Pica;
   pice: Pica[] = [];
   sirina: string;
+
   verifikacija: boolean = false;
   svePorudzbine: boolean = false;
   dodajProizvod: boolean = true;
+  user: any;
 
   constructor(
     private mediaObs: MediaObserver,
     private _proizvodiService: ProizvodService,
+    private _userService: UserService,
     private matDialog: MatDialog,
     private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
+    this._userService.GetUserProfil().subscribe({
+      next: (res) => {
+        this.user = res;
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
+
     this.subscribe = this.mediaObs.media$.subscribe((result: MediaChange) => {
       this.deviceXs = result.mqAlias === 'xs' ? true : false;
       if (this.deviceXs) {
@@ -64,7 +77,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this._proizvodiService
       .GetProizvodi()
       .subscribe((data) => (this.pice = data));
-    console.log(this.pice);
   }
   ObrisiProizvod(pica: Pica) {
     console.log(this.pice);

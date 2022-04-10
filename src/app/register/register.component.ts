@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { RegistracijaService } from '../services/registracija.service';
+import { UserService } from '../services/user.service';
 import Korisnik from 'src/models/Korisnik';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -17,12 +17,15 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private _registracijaService: RegistracijaService,
+    private _registracijaService: UserService,
     private router: Router,
     private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
+    if (localStorage.getItem('token') != null) {
+      this.router.navigate(['/dashboard']);
+    }
     this.forma = this.fb.group(
       {
         Ime: ['', Validators.required],
