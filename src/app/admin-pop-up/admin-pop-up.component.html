@@ -47,21 +47,6 @@
     </button>
   </form>
 </div>
-<div
-  *ngIf="tip == 'obrisiBtn'"
-  class="obrisi-kontajner"
-  fxLayout="column"
-  fxLayoutAlign="space-around"
->
-  <mat-icon class="close-btn" mat-dialog-close>highlight_off</mat-icon>
-
-  <h3>Uspjesno ste obrisali proizvod</h3>
-  <p>Id: {{ pica.proizvodId }}</p>
-  <p>Ime: {{ pica.ime }}</p>
-  <p>Velicina: {{ pica.velicina }}</p>
-  <p>Cena: {{ pica.cena }}e</p>
-  <p>Sastojci: {{ pica.sastojci }}</p>
-</div>
 <div *ngIf="tip == 'editujBtn'" fxLayout="column">
   <mat-icon class="close-btn" mat-dialog-close>highlight_off</mat-icon>
 

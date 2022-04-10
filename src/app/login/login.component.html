@@ -1,14 +1,47 @@
 <div fxLayoutAlign="center">
-  <div class="kontajner" fxLayout="column center" fxLayoutAlign="space-between">
-    <h3>Prijava</h3>
-    <form>
-      <input
-        type="text"
-        name="email"
-        placeholder="Email adresa"
-        class="polje"
-      />
-      <input type="text" name="password" placeholder="Password" class="polje" />
+  <div
+    class="kontajner"
+    fxLayout="column center"
+    ngClass.xs="kontajner-mali"
+    fxLayoutAlign="space-between"
+  >
+    <div fxLayout="row center" fxLayoutGap="16px">
+      <h3>Prijava</h3>
+      <mat-icon>login</mat-icon>
+    </div>
+    <form
+      [formGroup]="forma"
+      fxLayout="column"
+      autocomplete="off"
+      (ngSubmit)="Prijava()"
+    >
+      <mat-form-field>
+        <mat-label>Username:</mat-label>
+        <input
+          matInput
+          type="text"
+          name="username"
+          formControlName="Username"
+        />
+      </mat-form-field>
+      <mat-form-field fxFlex="50%">
+        <mat-label>Password:</mat-label>
+        <input
+          matInput
+          type="password"
+          name="Password"
+          formControlName="Password"
+          autocomplete="off"
+        />
+      </mat-form-field>
+      <button
+        mat-button
+        class="btn"
+        type="submit"
+        [disabled]="!this.forma.valid"
+      >
+        Prijavite se
+      </button>
     </form>
     <div>
       <p>Nemate nalog? <a routerLink="../register">Registrujte se!</a></p>

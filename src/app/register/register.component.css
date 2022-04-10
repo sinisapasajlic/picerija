@@ -33,3 +33,6 @@ h3 {
 .mat-radio-group {
   width: 100%;
 }
+.mat-icon {
+  margin-top: 3px;
+}

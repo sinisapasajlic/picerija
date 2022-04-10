@@ -72,3 +72,4 @@ C:\Users\pasaj\angular\picerija\WebApi\WebApi\bin\Debug\netcoreapp3.1\Microsoft.
 C:\Users\pasaj\angular\picerija\WebApi\WebApi\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Core.dll
 C:\Users\pasaj\angular\picerija\WebApi\WebApi\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Stores.dll
 C:\Users\pasaj\angular\picerija\WebApi\WebApi\obj\Debug\netcoreapp3.1\WebApi.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\pasaj\angular\picerija\WebApi\WebApi\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll

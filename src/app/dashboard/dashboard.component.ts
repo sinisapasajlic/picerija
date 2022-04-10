@@ -78,17 +78,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
           'Obrisali ste proizvod:'
         );
         this.GetProizvodi();
-        // let dialogRef = this.matDialog.open(AdminPopUpComponent, {
-        //   width: this.sirina,
-        //   height: '66%',
-        //   position: { top: '0', right: 'width/2' },
-        //   data: { naziv: 'obrisiBtn', pica: this.pica },
-        // });
-        // dialogRef.afterOpened().subscribe((_) => {
-        //   setTimeout(() => {
-        //     dialogRef.close();
-        //   }, 2000);
-        // });
       });
   }
   DodajProizvod() {
