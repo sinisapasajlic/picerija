@@ -17,7 +17,7 @@ namespace WebApi.models
     public DateTime datumRodjenja { get; set; }
     [Column(TypeName = "nvarchar(150)")]
     public string Adresa { get; set; }
-    public TipKorisnika TipKorisnika { get; set; }
+   
     [Column(TypeName = "nvarchar(150)")]
     public string SlikaKorisnika { get; set; }
   }

@@ -14,7 +14,7 @@ namespace WebApi.models
     public string Prezime { get; set; }
     public string Adresa { get; set; }
     public DateTime datumRodjenja { get; set; }
-    public TipKorisnika TipKorisnika { get; set; }
+    public string TipKorisnika { get; set; }
     public string SlikaKorisnika { get; set; }
   }
 }

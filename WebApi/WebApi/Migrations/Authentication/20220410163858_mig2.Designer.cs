@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApi.Data;
 
 namespace WebApi.Migrations.Authentication
 {
     [DbContext(typeof(AuthenticationContext))]
-    partial class AuthenticationContextModelSnapshot : ModelSnapshot
+    [Migration("20220410163858_mig2")]
+    partial class mig2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -240,6 +242,9 @@ namespace WebApi.Migrations.Authentication
 
                     b.Property<string>("SlikaKorisnika")
                         .HasColumnType("nvarchar(150)");
+
+                    b.Property<string>("TipKorisnika")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("datumRodjenja")
                         .HasColumnType("datetime2");

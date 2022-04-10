@@ -34,7 +34,6 @@ namespace WebApi.Controllers
         user.Prezime,
         user.Email,
         user.UserName,
-        user.TipKorisnika
       }; 
     }
   }

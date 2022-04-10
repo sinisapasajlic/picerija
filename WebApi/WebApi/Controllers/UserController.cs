@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
@@ -36,12 +37,13 @@ namespace WebApi.Controllers
         Prezime = korisnik.Prezime,
         datumRodjenja = korisnik.datumRodjenja,
         SlikaKorisnika = korisnik.SlikaKorisnika,
-        TipKorisnika = korisnik.TipKorisnika,
+        
         Adresa = korisnik.Adresa
       };
       try
       {
         var result = await _userManager.CreateAsync(applicationUser, korisnik.Password);
+        await _userManager.AddToRoleAsync(applicationUser, korisnik.TipKorisnika);
         return Ok(result);
       }
       catch (Exception ex)
@@ -58,9 +60,24 @@ namespace WebApi.Controllers
       var user = await _userManager.FindByNameAsync(model.UserName);
       if (user != null)
       {
+
+        var rola = await _userManager.GetRolesAsync(user);
+        IdentityOptions _options = new IdentityOptions();
         if (await _userManager.CheckPasswordAsync(user, model.Password))
         {
-          var tokenDescriptor = new Microsoft.IdentityModel.Tokens.SecurityTokenDescriptor { Subject = new ClaimsIdentity(new Claim[] { new Claim("UserId", user.Id.ToString()) }), Expires = DateTime.UtcNow.AddDays(1), SigningCredentials = new Microsoft.IdentityModel.Tokens.SigningCredentials(new Microsoft.IdentityModel.Tokens.SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(_appSettings.JWT_Secret)), Microsoft.IdentityModel.Tokens.SecurityAlgorithms.HmacSha256Signature) };
+          var tokenDescriptor = new Microsoft.IdentityModel.Tokens.SecurityTokenDescriptor {
+            Subject = new ClaimsIdentity(
+              new Claim[] {
+                new Claim("UserId", user.Id.ToString()),
+                new Claim(_options.ClaimsIdentity.RoleClaimType, rola.FirstOrDefault())
+              }),
+            Expires = DateTime.UtcNow.AddDays(1),
+            SigningCredentials = new Microsoft.IdentityModel.Tokens.SigningCredentials(
+              new Microsoft.IdentityModel.Tokens.SymmetricSecurityKey(
+                System.Text.Encoding.UTF8.GetBytes(_appSettings.JWT_Secret)),
+              Microsoft.IdentityModel.Tokens.SecurityAlgorithms.HmacSha256Signature)
+          };
+
           var tokenHandler = new System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler();
           var securityToken = tokenHandler.CreateToken(tokenDescriptor);
           var token = tokenHandler.WriteToken(securityToken);
@@ -75,6 +92,13 @@ namespace WebApi.Controllers
       { 
         return BadRequest(new { message= "Korisnicko ime ne postoji" });
       }
+    }
+    [HttpGet]
+    [Authorize(Roles = "Admin")]
+    [Route("SvePorudzbine")]
+    public string SvePorudzbine()
+    {
+      return "Admin radi";
     }
 
   }

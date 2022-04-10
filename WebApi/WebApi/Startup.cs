@@ -36,7 +36,7 @@ namespace WebApi
       services.AddCors(options => options.AddDefaultPolicy(builder => { builder.WithOrigins(Configuration["ApplicationSettings:Klijent_URL"].ToString()); builder.AllowAnyHeader(); builder.AllowAnyMethod(); }));
       services.AddDbContext<ProizvodContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ProizvodContext")));
       services.AddDbContext<AuthenticationContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ProizvodContext")));
-      services.AddDefaultIdentity<ApplicationUser>().AddEntityFrameworkStores<AuthenticationContext>();
+      services.AddDefaultIdentity<ApplicationUser>().AddRoles<IdentityRole>().AddEntityFrameworkStores<AuthenticationContext>();
       services.Configure<IdentityOptions>(options =>
       {
         options.Password.RequireDigit = false;

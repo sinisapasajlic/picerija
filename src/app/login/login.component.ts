@@ -29,18 +29,18 @@ export class LoginComponent implements OnInit {
     this.forma.valueChanges.subscribe(console.log);
   }
   Prijava() {
-    this._userService.PrijaviSe(this.forma.value).subscribe(
-      (res) => {
+    this._userService.PrijaviSe(this.forma.value).subscribe({
+      next: (res) => {
         localStorage.setItem('token', res.token);
         this.router.navigateByUrl('/dashboard');
       },
-      (err) => {
+      error: (err) => {
         if (err.status == 400) {
           this.toastr.error(err.error.message, 'Prijava neuspjesna');
         } else {
           console.log(err);
         }
-      }
-    );
+      },
+    });
   }
 }

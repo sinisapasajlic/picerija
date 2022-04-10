@@ -19,10 +19,7 @@ export class UserService {
     return this.http.post<any>(url, loginData);
   }
   GetUserProfil(): Observable<any> {
-    var tokenHeader = new HttpHeaders({
-      Authorization: 'Bearer ' + localStorage.getItem('token'),
-    });
     let url = BASE_USER_URL + 'userprofil';
-    return this.http.get<any>(url, { headers: tokenHeader });
+    return this.http.get<any>(url);
   }
 }

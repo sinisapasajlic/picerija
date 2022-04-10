@@ -66,7 +66,7 @@ export class RegisterComponent implements OnInit {
     korisnik.Adresa = this.forma.value.Adresa;
     korisnik.Password = this.forma.value.Password;
     korisnik.datumRodjenja = this.forma.value.DatumRodjenja;
-    korisnik.TipKorisnika = parseInt(this.forma.value.TipKorisnika);
+    korisnik.TipKorisnika = this.forma.value.TipKorisnika;
 
     this._registracijaService.RegistrujSe(korisnik).subscribe((res) => {
       if (res.succeeded) {
